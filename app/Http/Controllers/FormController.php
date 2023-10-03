@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\Form;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rules\Password;
 use App\Http\Requests;
@@ -14,7 +15,7 @@ class FormController extends Controller
     return view('form');
   }
 
-  public function show(Request $request)
+  public function processForm(Request $request)
   {
     $request->validate([
       'floating_email' => 'required|email',
@@ -35,22 +36,25 @@ class FormController extends Controller
 
     $request->floating_image->storeAs('public/images', $request->floating_image->getClientOriginalName());
 
-    $submissions = [
-      'Email' => $request->floating_email,
-      'Password' => $request->floating_password,
-      'First Name' => $request->floating_first_name,
-      'Last Name' => $request->floating_last_name,
-      'Age' => $request->floating_age,
-      'Image' => $request->floating_image->getClientOriginalName(),
-    ];
+    $form = new Form();
+    $form->email = request('floating_email');
+    $form->password = request('floating_password');
+    $form->first_name = request('floating_first_name');
+    $form->last_name = request('floating_last_name');
+    $form->age = request('floating_age');
+    $form->save();
 
-    return redirect('/submission')->with(['submissions' => $submissions, 'status' => 'success']);
-  }
+    $forms = Form::all();
 
-  public function submission()
-  {
-    $submissions = session()->get('submissions');
+    // $submissions = [
+    //   'Email' => $request->floating_email,
+    //   'Password' => $request->floating_password,
+    //   'First Name' => $request->floating_first_name,
+    //   'Last Name' => $request->floating_last_name,
+    //   'Age' => $request->floating_age,
+    //   'Image' => $request->floating_image->getClientOriginalName(),
+    // ];
 
-    return view ('submission', ['submissions' => $submissions]);
+    return redirect('/submission')->with(['forms' => $forms, 'status' => 'success']);
   }
 }
