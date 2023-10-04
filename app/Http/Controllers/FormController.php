@@ -46,14 +46,14 @@ class FormController extends Controller
 
     $forms = Form::all();
 
-    // $submissions = [
-    //   'Email' => $request->floating_email,
-    //   'Password' => $request->floating_password,
-    //   'First Name' => $request->floating_first_name,
-    //   'Last Name' => $request->floating_last_name,
-    //   'Age' => $request->floating_age,
-    //   'Image' => $request->floating_image->getClientOriginalName(),
-    // ];
+    $submissions = [
+      'Email' => $request->floating_email,
+      'Password' => $request->floating_password,
+      'First Name' => $request->floating_first_name,
+      'Last Name' => $request->floating_last_name,
+      'Age' => $request->floating_age,
+      'Image' => $request->floating_image->getClientOriginalName(),
+    ];
 
     return redirect('/submission')->with(['forms' => $forms, 'status' => 'success']);
   }

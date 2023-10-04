@@ -28,7 +28,10 @@
                 <tbody>
                     <tr>
                         <td class="px-4 py-2">{{ $form->email }}</td>
-                        <td class="px-4 py-2">{{ $form->password }}</td>
+                        <td class="px-4 py-2 cursor-pointer" onclick="togglePassword(this)">
+                            <span class="password-hidden">*********</span>
+                            <span class="password-visible hidden">{{ $form->password }}</span>
+                        </td>
                         <td class="px-4 py-2">{{ $form->first_name }}</td>
                         <td class="px-4 py-2">{{ $form->last_name }}</td>
                         <td class="px-4 py-2">{{ $form->age }}</td>
@@ -39,7 +42,20 @@
         @endforeach
 
     </div>
+    <script>
+        function togglePassword(element) {
+            const hiddenPassword = element.querySelector('.password-hidden');
+            const visiblePassword = element.querySelector('.password-visible');
 
+            if (hiddenPassword.classList.contains('hidden')) {
+                hiddenPassword.classList.remove('hidden');
+                visiblePassword.classList.add('hidden');
+            } else {
+                hiddenPassword.classList.add('hidden');
+                visiblePassword.classList.remove('hidden');
+            }
+        }
+    </script>
 </body>
 
 </html>
