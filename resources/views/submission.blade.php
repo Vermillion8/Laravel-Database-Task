@@ -9,10 +9,11 @@
 </head>
 
 <body class="bg-gray-100 h-screen flex items-center justify-center">
-
     <div class="bg-white p-8 rounded-lg shadow-lg">
-        <h1 class="text-2xl font-semibold mb-6">Form Data</h1>
-
+        <div class=" mb-4">
+            <h1 class="flex justify-start text-2xl font-semibold mb-6">Form Data</h1>
+            <a href="{{ url('/form') }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Create New</a>
+        </div>
         @foreach($forms as $form)
         <div class="mb-4">
             <table class="min-w-full table-auto border border-gray-300">
