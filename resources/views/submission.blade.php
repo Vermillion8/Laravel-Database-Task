@@ -1,40 +1,45 @@
 <!doctype html>
-<html>
+<html lang="en">
 
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  @vite(['resources/css/app.css','resources/js/app.js'])
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.15/dist/tailwind.min.css" rel="stylesheet">
+    <title>Your Form Data</title>
 </head>
 
-<body>
-  <div class="flex items-center justify-center h-screen w-screen">
-    <div class="container">
-      <div class="p-1 place-items-center">
+<body class="bg-gray-100 h-screen flex items-center justify-center">
+
+    <div class="bg-white p-8 rounded-lg shadow-lg">
+        <h1 class="text-2xl font-semibold mb-6">Form Data</h1>
+
         @foreach($forms as $form)
-        <table class="table-auto border-separate border-spacing-1" style="border: 1px solid">
-          <thead>
-            <tr>
-              <th>Email</th>
-              <th>Password</th>
-              <th>First Name</th>
-              <th>Last Name</th>
-              <th>Age</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>{{ $form->email }}</td>
-              <td>{{ $form->password }}</td>
-              <td>{{ $form->first_name }}</td>
-              <td>{{ $form->last_name }}</td>
-              <td>{{ $form->age }}</td>
-            </tr>
-          </tbody>
-        </table>
+        <div class="mb-4">
+            <table class="min-w-full table-auto border border-gray-300">
+                <thead>
+                    <tr class="bg-gray-100">
+                        <th class="px-4 py-2">Email</th>
+                        <th class="px-4 py-2">Password</th>
+                        <th class="px-4 py-2">First Name</th>
+                        <th class="px-4 py-2">Last Name</th>
+                        <th class="px-4 py-2">Age</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="px-4 py-2">{{ $form->email }}</td>
+                        <td class="px-4 py-2">{{ $form->password }}</td>
+                        <td class="px-4 py-2">{{ $form->first_name }}</td>
+                        <td class="px-4 py-2">{{ $form->last_name }}</td>
+                        <td class="px-4 py-2">{{ $form->age }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
         @endforeach
-      </div>
+
     </div>
+
 </body>
 
 </html>
